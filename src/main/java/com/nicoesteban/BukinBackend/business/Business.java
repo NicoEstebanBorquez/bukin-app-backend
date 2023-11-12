@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,7 @@ public class Business {
     @GeneratedValue
     private Long id;
     private String type;
+    @NotBlank
     private String name;
     //TODO Establecer relaciones OneToMany/ManyToMany.
     //private BusinessBasicInfo basicInfo;

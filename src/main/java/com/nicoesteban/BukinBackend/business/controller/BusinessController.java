@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -30,15 +31,14 @@ public class BusinessController {
         return businesses != null ? ResponseEntity.ok(businesses) : ResponseEntity.noContent().build();
     }
 
-    //TODO Añadir Validación.
     @PostMapping
-    public ResponseEntity<Business> postBusiness(@RequestBody Business business) {
+    public ResponseEntity<Business> postBusiness(@RequestBody @Valid Business business) {
         Business insertedBusiness = businessService.insertBusiness(business);
         return ResponseEntity.status(HttpStatus.CREATED).body(insertedBusiness);
     }
 
     @PutMapping
-    public ResponseEntity<Business> updateBusiness(@RequestBody Business business) {
+    public ResponseEntity<Business> updateBusiness(@RequestBody @Valid Business business) {
         businessService.updateBusiness(business);
         return ResponseEntity.ok(business);
     }
