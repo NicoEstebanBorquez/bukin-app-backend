@@ -25,7 +25,6 @@ public class BusinessServiceImpl implements BusinessService {
     @Override
     public List<Business> retrieveBusinesses() {
         List<Business> businesses = new ArrayList<>();
-        //TODO businessRepository.findAll().forEach(e -> businesses.add(e));
         businessRepository.findAll().forEach(businesses::add);
         return businesses;
     }
