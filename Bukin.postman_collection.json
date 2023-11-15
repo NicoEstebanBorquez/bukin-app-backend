@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1b01b5ef-3465-48e0-a2c0-65fc59dbe263",
+		"_postman_id": "e3ffd556-51b0-4f26-b421-b2ff93a01155",
 		"name": "Bukin",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "20434752"
+		"_exporter_id": "28602488"
 	},
 	"item": [
 		{
@@ -18,14 +18,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{localhost}}/api/businesses/2/services",
+									"raw": "{{localhost}}/api/businesses/1/services",
 									"host": [
 										"{{localhost}}"
 									],
 									"path": [
 										"api",
 										"businesses",
-										"2",
+										"1",
 										"services"
 									]
 								}
@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"barberia\",\r\n    \"name\": \"Marcus Pepe\",\r\n    \"services\": [\r\n        {\r\n            \"description\": \"servicio 1 Pepe\",\r\n            \"duration\": \"17\",\r\n            \"price\": \"10\"\r\n        },\r\n        {\r\n            \"description\": \"servicio 2 Pepe\",\r\n            \"duration\": \"16\",\r\n            \"price\": \"11\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"type\": \"peluqueria\",\r\n    \"businessBasicInfo\": {\r\n        \"name\": \"Marcus\",\r\n        \"address\": \"Calle\",\r\n        \"phoneNumber\": \"611122233\"\r\n    },\r\n    \"services\": [\r\n        {\r\n            \"description\": \"servicio 1 Marcus\",\r\n            \"duration\": \"30\",\r\n            \"price\": \"12\"\r\n        },\r\n        {\r\n            \"description\": \"servicio 2 Marcus\",\r\n            \"duration\": \"20\",\r\n            \"price\": \"10\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -134,7 +134,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"type\": \"peluqueria\",\r\n    \"name\": \"Peluqueria Manolo\"\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"type\": \"peluqueria\",\r\n    \"businessBasicInfo\": {\r\n        \"name\": \"Marcus editado\",\r\n        \"address\": \"Calle editado\",\r\n        \"phoneNumber\": \"611122233 editado\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
