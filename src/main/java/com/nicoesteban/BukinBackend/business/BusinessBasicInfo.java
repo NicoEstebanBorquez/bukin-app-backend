@@ -1,10 +1,8 @@
 package com.nicoesteban.BukinBackend.business;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 public class BusinessBasicInfo {
     private String name;
     private String address;

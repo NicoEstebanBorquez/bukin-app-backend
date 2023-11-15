@@ -1,6 +1,8 @@
 package com.nicoesteban.BukinBackend.business.controller;
 
 import com.nicoesteban.BukinBackend.business.Business;
+import com.nicoesteban.BukinBackend.business.BusinessDTO;
+import com.nicoesteban.BukinBackend.business.BusinessDtoToBusinessMapper;
 import com.nicoesteban.BukinBackend.business.repository.BusinessRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,8 @@ public class BusinessController {
 
     @Autowired
     BusinessRepository businessRepository;
+    @Autowired
+    BusinessDtoToBusinessMapper mapper;
 
     @GetMapping("businesses/{id}")
     public ResponseEntity<Business> getBusiness(@PathVariable Long id) {
@@ -36,17 +40,22 @@ public class BusinessController {
     }
 
     @PostMapping("/businesses")
-    public ResponseEntity<Business> createBusiness(@RequestBody @Valid Business business) {
-        Business insertedBusiness = businessRepository.save(business);
+    public ResponseEntity<Business> createBusiness(@RequestBody @Valid BusinessDTO businessDTO) {
+        Business businessRequest = mapper.toBusiness(businessDTO);
+        Business insertedBusiness = businessRepository.save(businessRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(insertedBusiness);
     }
 
     @PutMapping("/businesses")
-    public ResponseEntity<Business> updateBusiness(@RequestBody @Valid Business business) {
-        Business editedBusiness = businessRepository.findById(business.getId()).orElse(null);
+    public ResponseEntity<Business> updateBusiness(@RequestBody @Valid BusinessDTO businessDTO) {
+        Business businessRequest = mapper.toBusiness(businessDTO);
+        Business editedBusiness = businessRepository.findById(businessRequest.getId()).orElse(null);
         if (editedBusiness != null) {
-            editedBusiness.setType(business.getType());
-            editedBusiness.setName(business.getName());
+            editedBusiness.setType(businessRequest.getType());
+            editedBusiness.setName(businessRequest.getName());
+            editedBusiness.setAddress(businessRequest.getAddress());
+            editedBusiness.setPhoneNumber(businessRequest.getPhoneNumber());
+            //TODO
             //editedBusiness.setServices(business.getServices());
         }
         return ResponseEntity.ok(businessRepository.save(editedBusiness));

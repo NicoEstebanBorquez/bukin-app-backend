@@ -20,10 +20,11 @@ public class Business {
     private Long id;
     @NotBlank
     private String type;
-    @NotBlank
+    //TODO Añadir validación
+    //@NotBlank
     private String name;
-    //private BusinessBasicInfo basicInfo;
-
+    private String address;
+    private String phoneNumber;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "business_id")
     private Set<BusinessServiceInfo> services = new HashSet<>();
