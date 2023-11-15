@@ -6,22 +6,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "businesses")
 public class Business {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String type;
     @NotBlank
     private String name;
-    //TODO Establecer relaciones OneToMany/ManyToMany.
     //private BusinessBasicInfo basicInfo;
-    //private List<BusinessServiceInformation> services;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "business_id")
+    private Set<BusinessServiceInfo> services = new HashSet<>();
+
 }
 
 
