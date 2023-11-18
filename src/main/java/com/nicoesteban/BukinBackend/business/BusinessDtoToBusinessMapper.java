@@ -14,9 +14,10 @@ public class BusinessDtoToBusinessMapper {
         Business business = new Business();
         business.setId(businessDTO.getId());
         business.setType(businessDTO.getType());
-        business.setName(businessDTO.getBusinessBasicInfo().getName());
-        business.setAddress(businessDTO.getBusinessBasicInfo().getAddress());
-        business.setPhoneNumber(businessDTO.getBusinessBasicInfo().getPhoneNumber());
+        business.setName(businessDTO.getBasicInfo().getName());
+        business.setAddress(businessDTO.getBasicInfo().getAddress());
+        business.setPhoneNumber(businessDTO.getBasicInfo().getPhoneNumber());
+        business.setUrl(businessDTO.getUrl());
         business.setServices(businessDTO.getServices());
 
         return business;

@@ -25,6 +25,7 @@ public class Business {
     private String name;
     private String address;
     private String phoneNumber;
+    private String url;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "business_id")
     private Set<BusinessServiceInfo> services = new HashSet<>();
