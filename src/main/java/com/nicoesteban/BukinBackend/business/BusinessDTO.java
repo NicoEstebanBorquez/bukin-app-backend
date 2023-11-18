@@ -10,7 +10,8 @@ public class BusinessDTO {
 
     private Long id;
     private String type;
-    private BusinessBasicInfo businessBasicInfo;
+    private BusinessBasicInfo basicInfo;
+    private String url;
     private Set<BusinessServiceInfo> services = new HashSet<>();
 
 }
