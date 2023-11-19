@@ -101,6 +101,25 @@
 					"response": []
 				},
 				{
+					"name": "businesses/urls",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/businesses/2",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"businesses",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "businesses",
 					"request": {
 						"method": "POST",

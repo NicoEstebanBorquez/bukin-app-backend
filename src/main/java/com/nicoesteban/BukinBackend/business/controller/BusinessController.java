@@ -66,4 +66,14 @@ public class BusinessController {
         businessRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    //Get list of existing business URLs
+    @GetMapping("/businesses/urls")
+    public ResponseEntity<List<String>> getUrls() {
+        List<String> urls = new ArrayList<>();
+        businessRepository.findAll().forEach(
+                business -> urls.add(business.getUrl())
+        );
+        return ResponseEntity.ok(urls);
+    }
 }
