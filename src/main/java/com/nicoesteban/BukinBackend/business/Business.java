@@ -20,7 +20,7 @@ public class Business {
     private Long id;
     @NotBlank
     private String type;
-    //TODO Añadir validación
+    //TODO - Añadir validación
     //@NotBlank
     private String name;
     private String address;
