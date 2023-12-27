@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -26,19 +26,28 @@ public class BusinessController {
     @Autowired
     BusinessDtoToBusinessMapper mapper;
 
+    // √
     @GetMapping("businesses/{id}")
     public ResponseEntity<Business> getBusiness(@PathVariable Long id) {
-        Business business = businessRepository.findById(id).orElse(null);
-        return business != null ? ResponseEntity.ok(business) : ResponseEntity.noContent().build();
+        Optional<Business> business = businessRepository.findById(id);
+        return business.map(ResponseEntity::ok).orElse(ResponseEntity.noContent().build());
     }
 
+    // √
+    @GetMapping("businesses/url/{url}")
+    public ResponseEntity<Business> getBusinessByUrl(@PathVariable String url) {
+        Optional<Business> business = businessRepository.findByUrl(url);
+        return business.map(ResponseEntity::ok).orElse(ResponseEntity.noContent().build());
+    }
+
+    // √
     @GetMapping("/businesses")
     public ResponseEntity<List<Business>> getBusinesses() {
-        List<Business> businesses = new ArrayList<>();
-        businessRepository.findAll().forEach(businesses::add);
-        return businesses != null ? ResponseEntity.ok(businesses) : ResponseEntity.noContent().build();
+        List<Business> businesses = businessRepository.findAll();
+        return !businesses.isEmpty() ? ResponseEntity.ok(businesses) : ResponseEntity.noContent().build();
     }
 
+    //TODO - Comprobar si hay alguna forma de mejorar esto
     @PostMapping("/businesses")
     public ResponseEntity<Business> createBusiness(@RequestBody @Valid BusinessDTO businessDTO) {
         Business businessRequest = mapper.toBusiness(businessDTO);
@@ -46,6 +55,7 @@ public class BusinessController {
         return ResponseEntity.status(HttpStatus.CREATED).body(insertedBusiness);
     }
 
+    //TODO - Comprobar si hay alguna forma de mejorar esto
     @PutMapping("/businesses")
     public ResponseEntity<Business> updateBusiness(@RequestBody @Valid BusinessDTO businessDTO) {
         Business businessRequest = mapper.toBusiness(businessDTO);
@@ -61,19 +71,22 @@ public class BusinessController {
         return ResponseEntity.ok(businessRepository.save(editedBusiness));
     }
 
+    // √
     @DeleteMapping("businesses/{id}")
     public ResponseEntity<Void> deleteBusiness(@PathVariable Long id) {
-        businessRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        try {
+            businessRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
+    //  √
     //Get list of existing business URLs
     @GetMapping("/businesses/urls")
     public ResponseEntity<List<String>> getUrls() {
-        List<String> urls = new ArrayList<>();
-        businessRepository.findAll().forEach(
-                business -> urls.add(business.getUrl())
-        );
-        return ResponseEntity.ok(urls);
+        List<String> urls = businessRepository.findUrls();
+        return !urls.isEmpty() ? ResponseEntity.ok(urls) : ResponseEntity.noContent().build();
     }
 }
