@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1b01b5ef-3465-48e0-a2c0-65fc59dbe263",
+		"_postman_id": "441827e7-cda6-4b6f-97fb-cabb47d3a2c6",
 		"name": "Bukin",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "20434752"
@@ -18,14 +18,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{localhost}}/api/businesses/2/services",
+									"raw": "{{localhost}}/api/businesses/13/services",
 									"host": [
 										"{{localhost}}"
 									],
 									"path": [
 										"api",
 										"businesses",
-										"2",
+										"13",
 										"services"
 									]
 								}
@@ -39,7 +39,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"description\": \"servicio 2 Marcus\",\r\n    \"duration\": \"16\",\r\n    \"price\": \"9\"\r\n}",
+									"raw": "[\r\n    {\r\n        \"description\": \"servicio 1\",\r\n        \"duration\": \"12\",\r\n        \"price\": \"9\"\r\n    }\r\n]",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -47,14 +47,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{localhost}}/api/businesses/1/services",
+									"raw": "{{localhost}}/api/businesses/16/services",
 									"host": [
 										"{{localhost}}"
 									],
 									"path": [
 										"api",
 										"businesses",
-										"1",
+										"16",
 										"services"
 									]
 								}
@@ -82,19 +82,39 @@
 					"response": []
 				},
 				{
-					"name": "businesses/id",
+					"name": "businesses/{id}",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{localhost}}/api/businesses/2",
+							"raw": "{{localhost}}/api/businesses/",
 							"host": [
 								"{{localhost}}"
 							],
 							"path": [
 								"api",
 								"businesses",
-								"2"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "businesses/url/{url}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localhost}}/api/businesses/url/peluqueria-jose",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"businesses",
+								"url",
+								"peluqueria-jose"
 							]
 						}
 					},
@@ -106,14 +126,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{localhost}}/api/businesses/2",
+							"raw": "{{localhost}}/api/businesses/urls",
 							"host": [
 								"{{localhost}}"
 							],
 							"path": [
 								"api",
 								"businesses",
-								"2"
+								"urls"
 							]
 						}
 					},
@@ -126,7 +146,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"type\": \"barberia\",\r\n    \"basicInfo\": {\r\n        \"name\": \"Marcus Barber\",\r\n        \"address\": \"Calle 1\",\r\n        \"phoneNumber\": \"611222333\"\r\n    },\r\n    \"url\": \"marcus-barber\",\r\n    \"services\": [\r\n        {\r\n            \"description\": \"servicio 1 Marcus\",\r\n            \"duration\": \"17\",\r\n            \"price\": \"10\"\r\n        },\r\n        {\r\n            \"description\": \"servicio 2 Marcus\",\r\n            \"duration\": \"16\",\r\n            \"price\": \"11\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"type\": \"peluqueria\",\r\n    \"basicInfo\": {\r\n        \"name\": \"Peluqueria A\",\r\n        \"address\": \"Calle 2\",\r\n        \"phoneNumber\": \"611222333\"\r\n    },\r\n    \"url\": \"peluqueria-a\",\r\n    \"services\": [\r\n        {\r\n            \"description\": \"servicio 1 A\",\r\n            \"duration\": \"17\",\r\n            \"price\": \"10\"\r\n        },\r\n        {\r\n            \"description\": \"servicio 2 A\",\r\n            \"duration\": \"16\",\r\n            \"price\": \"11\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -174,19 +194,19 @@
 					"response": []
 				},
 				{
-					"name": "businesses/id",
+					"name": "businesses/{id}",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{localhost}}/api/businesses/41",
+							"raw": "{{localhost}}/api/businesses/15",
 							"host": [
 								"{{localhost}}"
 							],
 							"path": [
 								"api",
 								"businesses",
-								"41"
+								"15"
 							]
 						}
 					},
