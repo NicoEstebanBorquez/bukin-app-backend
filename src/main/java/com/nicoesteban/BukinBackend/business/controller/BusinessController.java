@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -26,33 +25,30 @@ public class BusinessController {
     @Autowired
     BusinessDtoToBusinessMapper mapper;
 
-    // √
     @GetMapping("businesses/{id}")
     public ResponseEntity<Business> getBusiness(@PathVariable Long id) {
-        Optional<Business> business = businessRepository.findById(id);
-        return business.map(ResponseEntity::ok).orElse(ResponseEntity.noContent().build());
+        return businessRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // √
     @GetMapping("businesses/url/{url}")
     public ResponseEntity<Business> getBusinessByUrl(@PathVariable String url) {
-        Optional<Business> business = businessRepository.findByUrl(url);
-        return business.map(ResponseEntity::ok).orElse(ResponseEntity.noContent().build());
+        return businessRepository.findByUrl(url)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    // √
     @GetMapping("/businesses")
     public ResponseEntity<List<Business>> getBusinesses() {
         List<Business> businesses = businessRepository.findAll();
         return !businesses.isEmpty() ? ResponseEntity.ok(businesses) : ResponseEntity.noContent().build();
     }
 
-    //TODO - Comprobar si hay alguna forma de mejorar esto
     @PostMapping("/businesses")
     public ResponseEntity<Business> createBusiness(@RequestBody @Valid BusinessDTO businessDTO) {
         Business businessRequest = mapper.toBusiness(businessDTO);
-        Business insertedBusiness = businessRepository.save(businessRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(insertedBusiness);
+        return ResponseEntity.status(HttpStatus.CREATED).body(businessRepository.save(businessRequest));
     }
 
     //TODO - Comprobar si hay alguna forma de mejorar esto
@@ -71,7 +67,6 @@ public class BusinessController {
         return ResponseEntity.ok(businessRepository.save(editedBusiness));
     }
 
-    // √
     @DeleteMapping("businesses/{id}")
     public ResponseEntity<Void> deleteBusiness(@PathVariable Long id) {
         try {
@@ -82,8 +77,6 @@ public class BusinessController {
         }
     }
 
-    //  √
-    //Get list of existing business URLs
     @GetMapping("/businesses/urls")
     public ResponseEntity<List<String>> getUrls() {
         List<String> urls = businessRepository.findUrls();
