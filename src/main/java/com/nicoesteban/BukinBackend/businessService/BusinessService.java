@@ -1,4 +1,4 @@
-package com.nicoesteban.BukinBackend.business;
+package com.nicoesteban.BukinBackend.businessService;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "business_services_info")
 @Entity
-public class BusinessServiceInfo {
+public class BusinessService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,7 @@
 package com.nicoesteban.BukinBackend.business;
 
+import com.nicoesteban.BukinBackend.businessService.BusinessService;
+import com.nicoesteban.BukinBackend.reservation.Reservation;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,7 +30,10 @@ public class Business {
     private String url;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "business_id")
-    private Set<BusinessServiceInfo> services = new HashSet<>();
+    private Set<BusinessService> services = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "business_id")
+    private Set<Reservation> reservations = new HashSet<>();
 
 }
 
