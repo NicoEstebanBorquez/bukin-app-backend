@@ -1,6 +1,7 @@
 package com.nicoesteban.BukinBackend.business;
 
 import com.nicoesteban.BukinBackend.businessService.BusinessService;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
 import java.util.HashSet;
@@ -8,11 +9,15 @@ import java.util.Set;
 
 @Getter
 public class BusinessDTO {
-
     private Long id;
-    private String type;
-    private BusinessBasicInfo basicInfo;
-    private String url;
-    private Set<BusinessService> services = new HashSet<>();
 
+    @Schema( type = "string", example = "Peluquería")
+    private String type;
+
+    private BusinessBasicInfo basicInfo;
+
+    @Schema( type = "string", example = "peluquería-marcos")
+    private String url;
+
+    private Set<BusinessService> services = new HashSet<>();
 }
