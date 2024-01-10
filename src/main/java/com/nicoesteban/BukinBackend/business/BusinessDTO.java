@@ -16,7 +16,7 @@ public class BusinessDTO {
 
     private BusinessBasicInfo basicInfo;
 
-    @Schema( type = "string", example = "peluquería-marcos")
+    @Schema( type = "string", example = "peluqueria-marcos")
     private String url;
 
     private Set<BusinessService> services = new HashSet<>();
