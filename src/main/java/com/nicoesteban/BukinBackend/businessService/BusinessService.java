@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "business_services_info")
+@Table(name = "business_services")
 @Entity
 public class BusinessService {
     //TODO - Añadir validación
